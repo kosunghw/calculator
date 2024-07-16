@@ -1,3 +1,9 @@
+let firstNumber;
+let operator;
+let secondNumber;
+
+
+
 const add = function(a, b) {
 	return a + b;
 };
@@ -25,3 +31,27 @@ const operate = function(operator, firstNum, secondNum) {
         return divide(firstNum, secondNum);
     }
 }
+
+const populateDisplay = function() {
+    let display = document.querySelector(".display");
+    let numButtons = document.querySelectorAll(".number");
+    for (const btn of numButtons) {
+        btn.addEventListener("mousedown", numberClicked);
+        btn.addEventListener("mouseup", numberClicked);
+        btn.addEventListener("click", () => {
+            if (display.textContent === '0') {
+                display.textContent = btn.textContent;
+            } else if (display.textContent.length < 10) {
+                display.textContent += btn.textContent;
+            }
+        });
+    }
+    let clearButton = document.querySelector(".clear");
+    clearButton.addEventListener("click", () => display.textContent = 0);
+}
+
+const numberClicked = function(btn) {
+    btn.target.classList.toggle("numberClicked");
+}
+
+populateDisplay();
