@@ -1,6 +1,7 @@
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
+let displayValue = '0';
 
 
 
@@ -32,32 +33,53 @@ const operate = function(operator, firstNum, secondNum) {
     }
 }
 
+// update display based on displayValue,
+// If length of displayValue is greater than 9,
+// Cut it to prevent overflow.
 const populateDisplay = function() {
-    let display = document.querySelector(".display");
-    let numButtons = document.querySelectorAll(".number");
-    for (const btn of numButtons) {
-        btn.addEventListener("click", () => {
-            numberClicked(btn, display);
-        });
-    }
-    let clearButton = document.querySelector(".clear");
-    clearButton.addEventListener("click", () => {
-        clear();
-        display.textContent = 0});
-}
-
-const numberClicked = function(btn, display) {
-    if (display.textContent === '0') {
-        display.textContent = btn.textContent;
-    } else if (display.textContent.length < 10) {
-        display.textContent += btn.textContent;
+    const display = document.querySelector(".display");
+    display.textContent = displayValue;
+    if(displayValue.length > 9) {
+        displayValue = displayValue.slice(0, 9);
+        display.textContent = displayValue;
     }
 }
+populateDisplay();
 
-const clear = function() {
+const numButtons = Array.from(document.querySelectorAll(".number"));
+numButtons.forEach((button) => button.addEventListener("click",
+    () => {
+        clickNumber(button);
+    }
+))
+
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => clickClear());
+
+const dotButton = document.querySelector(".dot")
+dotButton.addEventListener("click", () => clickDot(dotButton));
+
+function clickNumber(button) {
+    if(displayValue === '0') {
+        displayValue = button.textContent;
+        populateDisplay();
+    } else {
+        displayValue += button.textContent;
+        populateDisplay();
+    }
+}
+
+function clickClear() {
     firstNumber = '';
     secondNumber = '';
     operator = '';
+    displayValue = '0';
+    populateDisplay();
 }
 
-populateDisplay();
+function clickDot(button) {
+    if(!displayValue.includes('.')) {
+        displayValue += button.textContent;
+        populateDisplay();
+    }
+}
