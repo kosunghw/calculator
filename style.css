@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+}
+
+.colflex {
+    display: flex;
+    flex-direction: column;
+}
+
+.rowflex {
+    display: flex;
+    flex-direction: row;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.row {
+    width: 100%;
+}
