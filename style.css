@@ -5,35 +5,14 @@
 }
 
 .container {
-    padding: 10px;
-    justify-content: space-between;
-    align-items: center;
-    width: 300px;
-    height: 400px;
-}
-
-.colflex {
-    display: flex;
-    flex-direction: column;
-}
-
-.rowflex {
-    display: flex;
-    flex-direction: row;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.align-center {
-    align-items: center;
-}
-
-.flex-end {
-    justify-content: flex-end;
-}
-
-.row {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    padding: 5px;
+    border: 10px solid black;
+    width: 420px;
+    height: 550px;
 }
