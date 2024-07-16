@@ -68,12 +68,15 @@ button {
     background-color: rgb(219, 235, 0);
 }
 
-.operator {
+.operator,
+.equal {
     background-color: rgb(118, 126, 0);
     color: rgb(218, 218, 218);
 }
 
-.operator:active {
+.equal:active,
+.operator:active,
+.operatorClick {
     background-color: rgb(144, 155, 0);
 }
 
@@ -83,7 +86,7 @@ button {
     color: rgb(218, 218, 218);
 }
 
-.number:active
-,.dot:active {
+.number:active,
+.dot:active {
     background-color: rgb(92, 99, 0);
 }
