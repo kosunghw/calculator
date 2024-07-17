@@ -25,6 +25,10 @@ const divide = function(a, b) {
     return parseFloat((a / b).toFixed(8));
 }
 
+const remainder = function (a, b) {
+    return a % b;
+}
+
 const operate = function(operator, firstNum, secondNum) {
     if (operator === '+') {
         return add(+firstNum, +secondNum);
@@ -32,6 +36,8 @@ const operate = function(operator, firstNum, secondNum) {
         return subtract(+firstNum, +secondNum);
     } else if (operator === '*') {
         return multiply(+firstNum, +secondNum);
+    } else if (operator === '%') {
+        return remainder(+firstNum, +secondNum);
     } else {
         return divide(+firstNum, +secondNum);
     }
@@ -47,6 +53,7 @@ const populateDisplay = function() {
         displayValue = displayValue.slice(0, 9);
         display.textContent = displayValue;
     }
+    if(displayValue === "ERROR") {clickClear();}
 }
 populateDisplay();
 
@@ -72,11 +79,15 @@ eqButton.addEventListener("click", () => clickEqual())
 function clickNumber(button) {
     if(displayValue === '0' || displayValue === "ERROR") {
         displayValue = button.textContent;
-        populateDisplay();
     } else {
         displayValue += button.textContent;
-        populateDisplay();
     }
+    if(secondNumber === '' && !operatorToggle) {
+        firstNumber = displayValue;
+    } else {
+        secondNumber = displayValue;
+    }
+    populateDisplay();
 }
 
 function clickClear() {
@@ -98,27 +109,34 @@ function clickDot(button) {
 function clickOperator(button) {
     if(!operatorToggle) {
         operatorToggle = !operatorToggle;
-        firstNumber = displayValue;
+        // firstNumber = displayValue;
         operator = button.textContent;
         displayValue = '0';
     } else {
         clickOpWithOp();
+        operator = button.textContent;
     }
 }
 
 function clickEqual() {
-    operatorToggle = !operatorToggle;
-    secondNumber = displayValue;
-    const result = operate(operator, firstNumber, secondNumber);
-    displayValue = result;
-    firstNumber = result;
-    secondNumber = '';
-    populateDisplay();
+    if(secondNumber === '') {
+        displayValue = 'ERROR'
+        populateDisplay();
+    } else {
+        operatorToggle = !operatorToggle;
+        // secondNumber = displayValue;
+        const result = operate(operator, firstNumber, secondNumber);
+        displayValue = result;
+        firstNumber = result;
+        secondNumber = '';
+        populateDisplay();
+        displayValue = '0';
+    }
 }
 
 function clickOpWithOp() { // run this when user clicks operator again when operator
                          // already has been clicked.
-    secondNumber = displayValue;
+    // secondNumber = displayValue;
     displayValue = operate(operator, firstNumber, secondNumber);
     firstNumber = displayValue;
     secondNumber = '';

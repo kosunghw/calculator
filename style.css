@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Source Code Pro", monospace;
 }
 
 .container {
@@ -58,16 +59,6 @@ button {
     border: 1px solid black;
     border-radius: 10px;
 }
-
-.clear {
-    background-color: rgb(189, 202, 1);
-    color: rgb(36, 36, 36);
-}
-
-.clear:active {
-    background-color: rgb(219, 235, 0);
-}
-
 .operator,
 .equal {
     background-color: rgb(118, 126, 0);
@@ -78,6 +69,18 @@ button {
 .equal:active {
     background-color: rgb(144, 155, 0);
 }
+
+.clear,
+.light-green {
+    background-color: rgb(189, 202, 1);
+    color: rgb(36, 36, 36);
+}
+
+.clear:active,
+.light-green:active {
+    background-color: rgb(219, 235, 0);
+}
+
 
 .number,
 .dot {
