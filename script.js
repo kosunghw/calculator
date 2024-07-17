@@ -49,8 +49,8 @@ const operate = function(operator, firstNum, secondNum) {
 const populateDisplay = function() {
     const display = document.querySelector(".display");
     display.textContent = displayValue;
-    if(displayValue.length > 9) {
-        displayValue = displayValue.slice(0, 9);
+    if(displayValue.length > 8) {
+        displayValue = displayValue.slice(0, 8);
         display.textContent = displayValue;
     }
     if(displayValue === "ERROR") {clickClear();}
@@ -74,7 +74,10 @@ opButtons.forEach((button) => button.addEventListener("click",
 ));
 
 const eqButton = document.querySelector(".equal");
-eqButton.addEventListener("click", () => clickEqual())
+eqButton.addEventListener("click", () => clickEqual());
+
+const delButton = document.querySelector(".delete");
+delButton.addEventListener("click", () => clickDel());
 
 function clickNumber(button) {
     if(displayValue === '0' || displayValue === "ERROR") {
@@ -142,4 +145,19 @@ function clickOpWithOp() { // run this when user clicks operator again when oper
     secondNumber = '';
     populateDisplay();
     displayValue = '0';
+}
+
+function clickDel() {
+    if (!operatorToggle) {
+        firstNumber = firstNumber.slice(0, -1);
+    } else {
+        secondNumber = secondNumber.slice(0, -1);
+    }
+    if(displayValue.length === 1) {
+        displayValue = '0';
+        populateDisplay();
+    } else {
+        displayValue = displayValue.slice(0, -1);
+        populateDisplay();
+    }
 }

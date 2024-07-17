@@ -41,10 +41,6 @@
     flex-wrap: wrap;
 }
 
-.basis75 {
-    flex-basis: 75%;
-}
-
 .basis25 {
     flex-basis: 25%;
 }
