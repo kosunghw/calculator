@@ -22,7 +22,7 @@ const divide = function(a, b) {
     if(b === 0) {
         return "ERROR";
      }
-    return Math.round((a / b) * 100) / 100;
+    return parseFloat((a / b).toFixed(8));
 }
 
 const operate = function(operator, firstNum, secondNum) {
